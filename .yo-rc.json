@@ -1,0 +1,39 @@
+{
+  "generator-jhipster": {
+    "promptValues": {
+      "packageName": "com.bicc.compta"
+    },
+    "jhipsterVersion": "6.3.0",
+    "applicationType": "monolith",
+    "baseName": "compta",
+    "packageName": "com.bicc.compta",
+    "packageFolder": "com/bicc/compta",
+    "serverPort": "8080",
+    "authenticationType": "jwt",
+    "cacheProvider": "ehcache",
+    "enableHibernateCache": true,
+    "websocket": false,
+    "databaseType": "sql",
+    "devDatabaseType": "h2Disk",
+    "prodDatabaseType": "postgresql",
+    "searchEngine": false,
+    "messageBroker": false,
+    "serviceDiscoveryType": false,
+    "buildTool": "maven",
+    "enableSwaggerCodegen": false,
+    "jwtSecretKey": "MTJiNjQ0YTRlYzU1ODM3NjVkY2RkOWMyMjRmOGZhNDk4MzY5YjAwNzg0OGE1ZjAyMGQ5NWI0M2Q1NzQ1YjQyNTc1ZDU4MzQxMzU1MTg1OGZmNDUzZDk0MDZhNjU3MjBkNDk5MDBmOTY0Y2IwN2IwZTgzZjMxNmFmNzdmZjNhNTU=",
+    "embeddableLaunchScript": false,
+    "useSass": true,
+    "clientPackageManager": "npm",
+    "clientFramework": "angularX",
+    "clientTheme": "none",
+    "clientThemeVariant": "",
+    "testFrameworks": [],
+    "jhiPrefix": "jhi",
+    "entitySuffix": "",
+    "dtoSuffix": "DTO",
+    "otherModules": [],
+    "enableTranslation": false,
+    "blueprints": []
+  }
+}
