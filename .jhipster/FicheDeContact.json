@@ -1,0 +1,57 @@
+{
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "relationships": [
+        {
+            "relationshipName": "cv",
+            "otherEntityName": "cv",
+            "relationshipType": "one-to-one",
+            "ownerSide": false,
+            "otherEntityRelationshipName": "ficheDeContact"
+        },
+        {
+            "relationshipName": "formation",
+            "otherEntityName": "formation",
+            "relationshipType": "one-to-many",
+            "otherEntityRelationshipName": "ficheDeContact"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "genre",
+            "fieldType": "Boolean"
+        },
+        {
+            "fieldName": "nom",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "prenom",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "titre",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "mail",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "numeroDeTelephone",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "dateDeNaissance",
+            "fieldType": "LocalDate"
+        }
+    ],
+    "changelogDate": "20190929230901",
+    "dto": "no",
+    "searchEngine": false,
+    "service": "serviceClass",
+    "entityTableName": "fiche_de_contact",
+    "databaseType": "sql",
+    "jpaMetamodelFiltering": false,
+    "pagination": "infinite-scroll"
+}

@@ -1,0 +1,69 @@
+<div>
+    <h2 id="page-heading">
+        <span>Fiche De Contacts</span>
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-fiche-de-contact" [routerLink]="['/fiche-de-contact/new']">
+            <fa-icon [icon]="'plus'"></fa-icon>
+            <span >
+            Create a new Fiche De Contact
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <br/>
+    <div class="alert alert-warning" *ngIf="ficheDeContacts?.length === 0">
+        <span>No ficheDeContacts found</span>
+    </div>
+    <div class="table-responsive" *ngIf="ficheDeContacts?.length > 0">
+        <table class="table table-striped" aria-describedby="page-heading">
+            <thead>
+            <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="reset.bind(this)">
+            <th jhiSortBy="id"><span>ID</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="genre"><span>Genre</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="nom"><span>Nom</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="prenom"><span>Prenom</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="titre"><span>Titre</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="mail"><span>Mail</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="numeroDeTelephone"><span>Numero De Telephone</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="dateDeNaissance"><span>Date De Naissance</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody infinite-scroll (scrolled)="loadPage(page + 1)" [infiniteScrollDisabled]="page >= links['last']" [infiniteScrollDistance]="0">
+            <tr *ngFor="let ficheDeContact of ficheDeContacts ;trackBy: trackId">
+                <td><a [routerLink]="['/fiche-de-contact', ficheDeContact.id, 'view' ]">{{ficheDeContact.id}}</a></td>
+                <td>{{ficheDeContact.genre}}</td>
+                <td>{{ficheDeContact.nom}}</td>
+                <td>{{ficheDeContact.prenom}}</td>
+                <td>{{ficheDeContact.titre}}</td>
+                <td>{{ficheDeContact.mail}}</td>
+                <td>{{ficheDeContact.numeroDeTelephone}}</td>
+                <td>{{ficheDeContact.dateDeNaissance | date:'mediumDate'}}</td>
+                <td class="text-right">
+                    <div class="btn-group">
+                        <button type="submit"
+                                [routerLink]="['/fiche-de-contact', ficheDeContact.id, 'view' ]"
+                                class="btn btn-info btn-sm">
+                            <fa-icon [icon]="'eye'"></fa-icon>
+                            <span class="d-none d-md-inline">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/fiche-de-contact', ficheDeContact.id, 'edit']"
+                                class="btn btn-primary btn-sm">
+                            <fa-icon [icon]="'pencil-alt'"></fa-icon>
+                            <span class="d-none d-md-inline">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/fiche-de-contact', { outlets: { popup: ficheDeContact.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <fa-icon [icon]="'times'"></fa-icon>
+                            <span class="d-none d-md-inline">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
