@@ -1,7 +1,10 @@
 package com.bicc.compta.service;
 
-import com.bicc.compta.domain.Formation;
+import com.bicc.compta.domain.formation.Formation;
+import com.bicc.compta.repository.FormationAutodidacteRepository;
 import com.bicc.compta.repository.FormationRepository;
+import com.bicc.compta.repository.FormationScolaireRepository;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -21,6 +24,7 @@ public class FormationService {
     private final Logger log = LoggerFactory.getLogger(FormationService.class);
 
     private final FormationRepository formationRepository;
+
 
     public FormationService(FormationRepository formationRepository) {
         this.formationRepository = formationRepository;

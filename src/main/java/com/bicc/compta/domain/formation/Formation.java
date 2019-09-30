@@ -1,11 +1,21 @@
-package com.bicc.compta.domain;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+package com.bicc.compta.domain.formation;
+import java.io.Serializable;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
+import javax.persistence.ManyToOne;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
+
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
-import javax.persistence.*;
-
-import java.io.Serializable;
+import com.bicc.compta.domain.FicheDeContact;
 
 /**
  * A Formation.
@@ -13,9 +23,31 @@ import java.io.Serializable;
 @Entity
 @Table(name = "formation")
 @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
-public class Formation implements Serializable {
+@Inheritance(strategy = InheritanceType.JOINED)
+public abstract class Formation implements Serializable {
 
-    private static final long serialVersionUID = 1L;
+	/*
+	 * TODO 
+	 * 0 - modifier la page d'accueil : doit être le component fiche de contacts --> inclus compontent formations display all formations 
+	    1- Modifier l'affichage front liste formations pour faire la différence dans l'affichage formation auto / scolaire
+	    1a- verifier le tri de la liste par ordre chronologique décroissant
+	    2- Modifier l'affichage de l'édit formation pour administrateur
+	    3- coder le converter boolean / genre à l'affichage et pour la création / édition
+	    
+	    3- modifier les droits : seuls les administrateur peuvent creer modifier supprimer editer 
+	    	la fiche de contact / formation
+	    	
+	    3- ajouter script faker / liquibase pour affilier les formations existantes H2 a auto / scolaire (5/5)
+	    
+		5- tester les save / edit / suppr pour les deux types de formation avec le repo formation général : ca 
+			devrait marcher mais il faut vérifier le comportement	    
+		4- Supprimer les repository formation auto / sco --> plus besoin formation gère les deux si etape avant marche
+
+		6- creer l'entity projet, Projet, ProjetPersonnel ProjetProfessionnel et passer à l'écran PROJET
+			- Problématique de
+	*/
+	
+    private static final long serialVersionUIpD = 1L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "sequenceGenerator")

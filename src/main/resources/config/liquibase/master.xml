@@ -16,7 +16,11 @@
     <include file="config/liquibase/changelog/00000000000000_initial_schema.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20190930000832_added_entity_FicheDeContact.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20190930002353_added_entity_Formation.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/added_entity_FormationAutodidacte.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/added_entity_FormationScolaire.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-changelog - JHipster will add liquibase changelogs here -->
     <include file="config/liquibase/changelog/20190930002353_added_entity_constraints_Formation.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/added_entity_constraints_FormationAutodidacte.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/added_entity_constraints_FormationScolaire.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-constraints-changelog - JHipster will add liquibase constraints changelogs here -->
 </databaseChangeLog>

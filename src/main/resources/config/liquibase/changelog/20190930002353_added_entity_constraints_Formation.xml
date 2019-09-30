@@ -13,6 +13,5 @@
                                  constraintName="fk_formation_fiche_de_contact_id"
                                  referencedColumnNames="id"
                                  referencedTableName="fiche_de_contact"/>
-
-    </changeSet>
+    </changeSet>    
 </databaseChangeLog>
