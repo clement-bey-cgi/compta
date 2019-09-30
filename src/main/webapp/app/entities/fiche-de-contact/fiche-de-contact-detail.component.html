@@ -1,0 +1,51 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="ficheDeContact">
+            <h2><span>Fiche De Contact</span> {{ficheDeContact.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span>Genre</span></dt>
+                <dd>
+                    <span>{{ficheDeContact.genre}}</span>
+                </dd>
+                <dt><span>Nom</span></dt>
+                <dd>
+                    <span>{{ficheDeContact.nom}}</span>
+                </dd>
+                <dt><span>Prenom</span></dt>
+                <dd>
+                    <span>{{ficheDeContact.prenom}}</span>
+                </dd>
+                <dt><span>Titre</span></dt>
+                <dd>
+                    <span>{{ficheDeContact.titre}}</span>
+                </dd>
+                <dt><span>Mail</span></dt>
+                <dd>
+                    <span>{{ficheDeContact.mail}}</span>
+                </dd>
+                <dt><span>Numero De Telephone</span></dt>
+                <dd>
+                    <span>{{ficheDeContact.numeroDeTelephone}}</span>
+                </dd>
+                <dt><span>Date De Naissance</span></dt>
+                <dd>
+                    <span>{{ficheDeContact.dateDeNaissance}}</span>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/fiche-de-contact', ficheDeContact.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

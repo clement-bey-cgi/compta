@@ -1,0 +1,93 @@
+import { Component, OnInit } from '@angular/core';
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+import { HttpResponse, HttpErrorResponse } from '@angular/common/http';
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+import { FormBuilder, Validators } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
+import { Observable } from 'rxjs';
+import * as moment from 'moment';
+import { IFicheDeContact, FicheDeContact } from 'app/shared/model/fiche-de-contact.model';
+import { FicheDeContactService } from './fiche-de-contact.service';
+
+@Component({
+  selector: 'jhi-fiche-de-contact-update',
+  templateUrl: './fiche-de-contact-update.component.html'
+})
+export class FicheDeContactUpdateComponent implements OnInit {
+  isSaving: boolean;
+  dateDeNaissanceDp: any;
+
+  editForm = this.fb.group({
+    id: [],
+    genre: [],
+    nom: [],
+    prenom: [],
+    titre: [],
+    mail: [],
+    numeroDeTelephone: [],
+    dateDeNaissance: []
+  });
+
+  constructor(protected ficheDeContactService: FicheDeContactService, protected activatedRoute: ActivatedRoute, private fb: FormBuilder) {}
+
+  ngOnInit() {
+    this.isSaving = false;
+    this.activatedRoute.data.subscribe(({ ficheDeContact }) => {
+      this.updateForm(ficheDeContact);
+    });
+  }
+
+  updateForm(ficheDeContact: IFicheDeContact) {
+    this.editForm.patchValue({
+      id: ficheDeContact.id,
+      genre: ficheDeContact.genre,
+      nom: ficheDeContact.nom,
+      prenom: ficheDeContact.prenom,
+      titre: ficheDeContact.titre,
+      mail: ficheDeContact.mail,
+      numeroDeTelephone: ficheDeContact.numeroDeTelephone,
+      dateDeNaissance: ficheDeContact.dateDeNaissance
+    });
+  }
+
+  previousState() {
+    window.history.back();
+  }
+
+  save() {
+    this.isSaving = true;
+    const ficheDeContact = this.createFromForm();
+    if (ficheDeContact.id !== undefined) {
+      this.subscribeToSaveResponse(this.ficheDeContactService.update(ficheDeContact));
+    } else {
+      this.subscribeToSaveResponse(this.ficheDeContactService.create(ficheDeContact));
+    }
+  }
+
+  private createFromForm(): IFicheDeContact {
+    return {
+      ...new FicheDeContact(),
+      id: this.editForm.get(['id']).value,
+      genre: this.editForm.get(['genre']).value,
+      nom: this.editForm.get(['nom']).value,
+      prenom: this.editForm.get(['prenom']).value,
+      titre: this.editForm.get(['titre']).value,
+      mail: this.editForm.get(['mail']).value,
+      numeroDeTelephone: this.editForm.get(['numeroDeTelephone']).value,
+      dateDeNaissance: this.editForm.get(['dateDeNaissance']).value
+    };
+  }
+
+  protected subscribeToSaveResponse(result: Observable<HttpResponse<IFicheDeContact>>) {
+    result.subscribe(() => this.onSaveSuccess(), () => this.onSaveError());
+  }
+
+  protected onSaveSuccess() {
+    this.isSaving = false;
+    this.previousState();
+  }
+
+  protected onSaveError() {
+    this.isSaving = false;
+  }
+}
